@@ -2,7 +2,7 @@ INC_DIR = Headers
 SRC_DIR = Sources
 OBJ_DIR = Objects
 #CXXFLAGS = -c -Wall -I. -IHeaders
-CXXFLAGS = -c -Wall  -IHeaders
+CXXFLAGS = -c -Wall -I. -IHeaders
 CC = gcc
 
 SRCS = $(SRC_DIR)/*.c 
@@ -25,4 +25,4 @@ run: output
 clean: 
 	rm $(OBJ_DIR)/*.o 
 	rm output
-	"Clean completed"
+	-@echo "Clean completed"
