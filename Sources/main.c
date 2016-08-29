@@ -1,16 +1,19 @@
+
 #include "function.h"
 
-#define MINC 4
-#define MAXC 5
 
 int main(int argc, char const *argv[])
 {
-	//printf("%s\n", "Hello from new main");
+	char input[MIN_Char][MAX_Char]; //user input
+	char color_index[argc];
+
 	printf("%s:\t%d\n", "argc #",argc);
 
 	for (int i = 1; i < argc; ++i)
 	{
-		printf("%s\n", argv[i]);
+		strcpy(input[i-1] , argv[i]); // make a coppy of input
+		color_index[i] = srchBands(input[i-1]);
+		printf("%s:\t%d\n", input[i-1],color_index[i]);
 	}
 
 	return 0;
