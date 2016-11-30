@@ -2,6 +2,7 @@
 #define RESISTOR_H 
 
 #include <string>
+#include <iostream>
 
 #define nItems (sizeof band_list/sizeof *band_list)
 
