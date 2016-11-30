@@ -1,3 +1,7 @@
+#ifndef FUNCTION_H
+#define FUNCTION_H 
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -32,3 +36,7 @@ typedef struct
 int srchBands (char *ccode);
 
 int scmp (char *a, char *b);
+
+
+
+#endif

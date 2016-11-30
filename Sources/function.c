@@ -1,5 +1,4 @@
-#ifndef FUNCTION_H
-#define FUNCTION_H 
+
 #include "function.h"
 
 resistor band[] = {
@@ -43,5 +42,4 @@ int scmp (char *a, char *b)
     return *a - *b;
 }
 
-#endif
 

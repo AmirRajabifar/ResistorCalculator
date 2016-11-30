@@ -1,5 +1,6 @@
 
 #include "function.h"
+#include "test.h"
 
 
 int main(int argc, char const *argv[])
@@ -14,6 +15,7 @@ int main(int argc, char const *argv[])
 		strcpy(input[i-1] , argv[i]); // make a coppy of input
 		color_index[i] = srchBands(input[i-1]);
 		printf("%s:\t%d\n", input[i-1],color_index[i]);
+		printf("%s%d\n", "Test add: ", addnum(i, i-1));
 	}
 
 	return 0;
