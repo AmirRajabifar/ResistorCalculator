@@ -13,18 +13,17 @@ items band_list[] = {
 	{"white", WHITE}
 };
 
+unsigned int multiplier[] = {1, 10, 100, 1000, 10000, 100000, 1000000,
+10000000, 100000000, 1000000000};
 
 
 void Resistor::setBands (const std::string& band1, const std::string& band2, const std::string& band3)
 {
 	// arbitory value
-	this->__band1 = srchItems(band1);
-	this->__band2 = srchItems(band2);
-	this->__band3 = srchItems(band3);
+	this->__bands[0] = srchItems(band1);
+	this->__bands[1] = srchItems(band2);
+	this->__bands[2] = srchItems(band3);
 }
-
-
-
 
 
 
@@ -58,6 +57,20 @@ int Resistor::scmp (char const *a, char const *b)
     for (; *a && *b && *a == *b; a++, b++) {}
 
     return *a - *b;
+}
+
+long Resistor::calculateValue ()
+{
+	long total = 0;
+	for (int i = 0; i < MINC - 1; ++i)
+	{
+		//first band , second band values
+		total = (total * 10) + this->__bands[i]; 
+	}
+	//third band is the multiplier
+	this->__multi = this->__bands[2]; 
+	total *= multiplier[this->__multi]; // *
+	return total;
 }
 
 /*
