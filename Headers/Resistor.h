@@ -3,6 +3,8 @@
 
 #include <string>
 #include <iostream>
+#include <algorithm>
+#include <vector>
 
 #define nItems (sizeof band_list/sizeof *band_list)
 
@@ -35,7 +37,8 @@ public:
 	
 	int srchItems (const std::string& ccode); //Look for the resistor band
 	int scmp (char const *a, char const *b);
-
+	
+	
 	long calculateValue ();
 };
 

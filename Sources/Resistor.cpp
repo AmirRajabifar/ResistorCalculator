@@ -30,8 +30,11 @@ void Resistor::setBands (const std::string& band1, const std::string& band2, con
 int Resistor::srchItems (const std::string& ccode)
 {
 	//char lccode [MAXCC] = "";
-	const char *lccode = ccode.c_str();
-	//strcpy2lower (lccode, ccode); // converts everything to lower case
+	std::string String = ccode;
+	std::transform(String.begin(), String.end(), String.begin(), tolower);
+
+	const char *lccode = String.c_str();
+	
 	//std::cout << "nItems = " << nItems << std::endl; //Debug line
 	for (int i = 0; i < (int)nItems; ++i) 
 	{	
@@ -73,19 +76,7 @@ long Resistor::calculateValue ()
 	return total;
 }
 
-/*
 
-char Resistor::strcpy2lower (char *dest, char *src)
-{
-    if (!src || !dest) return NULL;
-    char *d = dest;
-    for (; *src; src++, d++)
-        if ('A' <= *src && *src <= 'Z')
-            *d = *src | (1 << 5);
-        else
-            *d = *src;
-    *d = 0;
-    return dest;
-}
 
-*/
+
+
