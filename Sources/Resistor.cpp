@@ -19,7 +19,9 @@ unsigned int multiplier[] = {1, 10, 100, 1000, 10000, 100000, 1000000,
 
 void Resistor::setBands (const std::string& band1, const std::string& band2, const std::string& band3)
 {
-	// arbitory value
+	this->__band_string[0] = band1;
+	this->__band_string[1] = band2;
+	this->__band_string[2] = band3;
 	this->__bands[0] = srchItems(band1);
 	this->__bands[1] = srchItems(band2);
 	this->__bands[2] = srchItems(band3);
@@ -65,18 +67,42 @@ int Resistor::scmp (char const *a, char const *b)
 long Resistor::calculateValue ()
 {
 	long total = 0;
-	for (int i = 0; i < MINC - 1; ++i)
+	if (this->validate())
 	{
-		//first band , second band values
-		total = (total * 10) + this->__bands[i]; 
+		for (int i = 0; i < MINC - 1; ++i)
+		{
+			//first band , second band values
+			total = (total * 10) + this->__bands[i]; 
+		}
+		//third band is the multiplier
+		this->__multi = this->__bands[2]; 
+		total *= multiplier[this->__multi]; // *
+		return total;
 	}
-	//third band is the multiplier
-	this->__multi = this->__bands[2]; 
-	total *= multiplier[this->__multi]; // *
-	return total;
+	else
+	{
+		return -1;
+	}
 }
 
 
+bool Resistor::validate()
+{
+	int j = 0;
+	for (int i = 0; i < MINC; ++i)
+	{
+		if (this->__bands[i] == -1)
+		{
+			std::cout << __band_string[i] << std::endl;
+			j++;
+		}
+	}
+	std::cout << "Invalid input" << std::endl;
+	if (j >= 1) 
+		return 0;
+	else 
+		return 1;
+}
 
 
 

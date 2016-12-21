@@ -18,13 +18,17 @@ int main(int argc, char const *argv[])
 	{
 		cout << argv[i] << "\t" << flush;
 	}
+	cout << '\n' << flush;
 	cout << resistor.band1Value() << endl;
 	cout << resistor.band2Value() << endl;
 	cout << resistor.band3Value() << endl;
 	//end debug
 	*/
 	totalResistance = resistor.calculateValue();
-	cout << totalResistance << endl;
+	if (totalResistance != -1)
+	{
+		cout << totalResistance << endl;
+	}
 	return 0;
 }
 

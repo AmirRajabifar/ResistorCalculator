@@ -25,7 +25,10 @@ class Resistor
 {
 private: 
 	int __bands[MINC];
+	std::string __band_string[MINC];
 	int __multi;
+	bool validate();
+
 public:
 	//Resistor();
 	//~Resistor();
@@ -37,7 +40,6 @@ public:
 	
 	int srchItems (const std::string& ccode); //Look for the resistor band
 	int scmp (char const *a, char const *b);
-	
 	
 	long calculateValue ();
 };
