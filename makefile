@@ -15,19 +15,15 @@ OBJS = $(OBJ_DIR)/*.o
 DEPS = $(INC_DIR)/*.h
 #need to use an automatic dependency generator
 
-output: $(OBJ_DIR)/main.o $(OBJ_DIR)/Resistor.o
+resistor: $(OBJ_DIR)/main.o $(OBJ_DIR)/Resistor.o
 	$(CC) $^ -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(DEPS)
 	$(CC) $(CXXFLAGS) $< -o $@
 
-
-run: output
-	./output
-
 .PHONY: clean
 clean: 
 	rm -r $(OBJ_DIR) 
 	#rm -r $(DEP_DIR) 
-	rm output
+	rm resistor
 	-@echo "Clean completed"

@@ -27,11 +27,13 @@ void Resistor::setBands (const std::string& band1, const std::string& band2, con
 		this->__bands[1] = srchItems(band2);
 		this->__bands[2] = srchItems(band3);		
 		this->__bands[3] = srchItems(band4);
+		/*
 		for (int i = 0; i < MINC; ++i)
 		{
 			std::cout << __band_string[i] << '\t' << __bands[i] << std::endl;
 		}
 		std::cout << std::endl;
+		*/
 }
 
 
