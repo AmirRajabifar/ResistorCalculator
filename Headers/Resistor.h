@@ -8,7 +8,7 @@
 
 #define nItems (sizeof band_list/sizeof *band_list)
 
-enum {MINC = 3, MAXCC = 10};
+enum {MINC = 4, MAXCC = 10};
 enum resistor_band_items {BLACK, BROWN, RED, ORANGE, YELLOW, GREEN, BLUE, VIOLET, GRAY, WHITE, UNKNOWN};
 
 
@@ -32,11 +32,7 @@ private:
 public:
 	//Resistor();
 	//~Resistor();
-	void setBands (const std::string& band1, const std::string& band2, const std::string& band3);
-	
-	int band1Value () {return this->__bands[0];}
-	int band2Value () {return this->__bands[1];}
-	int band3Value () {return this->__bands[2];}
+	void setBands (const std::string& band1, const std::string& band2, const std::string& band3, const std::string& band4 = "-2");
 	
 	int srchItems (const std::string& ccode); //Look for the resistor band
 	int scmp (char const *a, char const *b);

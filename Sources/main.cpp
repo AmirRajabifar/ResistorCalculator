@@ -11,19 +11,15 @@ int main(int argc, char const *argv[])
 	Resistor resistor;
 	long totalResistance;
 	//cout << "argc #\t" << argc << endl;
-	resistor.setBands(argv[1], argv[2], argv[3]);
-	//debug
-	/*
-	for (int i = 1; i < argc; ++i)
+	if (argc == 5)
 	{
-		cout << argv[i] << "\t" << flush;
+		resistor.setBands(argv[1], argv[2], argv[3], argv[4]);	
 	}
-	cout << '\n' << flush;
-	cout << resistor.band1Value() << endl;
-	cout << resistor.band2Value() << endl;
-	cout << resistor.band3Value() << endl;
-	//end debug
-	*/
+	else
+	{
+		resistor.setBands(argv[1], argv[2], argv[3]);
+	}
+
 	totalResistance = resistor.calculateValue();
 	if (totalResistance != -1)
 	{

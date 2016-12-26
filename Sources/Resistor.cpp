@@ -17,14 +17,21 @@ unsigned int multiplier[] = {1, 10, 100, 1000, 10000, 100000, 1000000,
 10000000, 100000000, 1000000000};
 
 
-void Resistor::setBands (const std::string& band1, const std::string& band2, const std::string& band3)
+void Resistor::setBands (const std::string& band1, const std::string& band2, const std::string& band3, const std::string& band4)
 {
-	this->__band_string[0] = band1;
-	this->__band_string[1] = band2;
-	this->__band_string[2] = band3;
-	this->__bands[0] = srchItems(band1);
-	this->__bands[1] = srchItems(band2);
-	this->__bands[2] = srchItems(band3);
+		this->__band_string[0] = band1;
+		this->__band_string[1] = band2;
+		this->__band_string[2] = band3;
+		this->__band_string[3] = band4;
+		this->__bands[0] = srchItems(band1);
+		this->__bands[1] = srchItems(band2);
+		this->__bands[2] = srchItems(band3);		
+		this->__bands[3] = srchItems(band4);
+		for (int i = 0; i < MINC; ++i)
+		{
+			std::cout << __band_string[i] << '\t' << __bands[i] << std::endl;
+		}
+		std::cout << std::endl;
 }
 
 
@@ -69,13 +76,26 @@ long Resistor::calculateValue ()
 	long total = 0;
 	if (this->validate())
 	{
-		for (int i = 0; i < MINC - 1; ++i)
+		if (__bands[MINC - 1] == -1)
 		{
-			//first band , second band values
-			total = (total * 10) + this->__bands[i]; 
+			for (int i = 0; i < MINC - 2; ++i)
+			{
+				//first band , second band values
+				total = (total * 10) + this->__bands[i]; 
+			}
+			//third band is the multiplier
+			this->__multi = this->__bands[2]; 
 		}
-		//third band is the multiplier
-		this->__multi = this->__bands[2]; 
+		else
+		{
+			for (int i = 0; i < MINC - 1; ++i)
+			{
+				//first band , second band values
+				total = (total * 10) + this->__bands[i]; 
+			}
+			//third band is the multiplier
+			this->__multi = this->__bands[3]; 			
+		}
 		total *= multiplier[this->__multi]; // *
 		return total;
 	}
@@ -89,17 +109,39 @@ long Resistor::calculateValue ()
 bool Resistor::validate()
 {
 	int j = 0;
-	for (int i = 0; i < MINC; ++i)
+	if (__bands[MINC - 1] == -1)
 	{
-		if (this->__bands[i] == -1)
+		for (int i = 0; i < MINC - 2; ++i)
 		{
-			std::cout << __band_string[i] << std::endl;
-			j++;
+			if (this->__bands[i] == -1)
+			{
+				std::cout << __band_string[i] << std::endl;
+				j++;
+			}
 		}
 	}
-	std::cout << "Invalid input" << std::endl;
-	if (j >= 1) 
+	else
+	{
+		for (int i = 0; i < MINC; ++i)
+		{
+			if (this->__bands[i] == -1)
+			{
+				std::cout << __band_string[i] << std::endl;
+				j++;
+			}
+		}
+	}
+
+	if (j == 1) 
+	{
+		std::cout << "Is an invalid input" << std::endl;
 		return 0;
+	}
+	else if (j > 1) 
+	{
+		std::cout << "Are invalid inputs" << std::endl;
+		return 0;
+	}
 	else 
 		return 1;
 }
