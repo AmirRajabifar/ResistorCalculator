@@ -9,7 +9,7 @@
 #define nItems (sizeof band_list/sizeof *band_list)
 
 enum {MINC = 4, MAXCC = 10};
-enum resistor_band_items {BLACK, BROWN, RED, ORANGE, YELLOW, GREEN, BLUE, VIOLET, GRAY, WHITE, UNKNOWN};
+enum resistor_band_items {BLACK, BROWN, RED, ORANGE, YELLOW, GREEN, BLUE, VIOLET, GRAY, WHITE, GOLD, SILVER, UNKNOWN};
 
 
 
@@ -38,6 +38,8 @@ public:
 	int scmp (char const *a, char const *b);
 	
 	long calculateValue ();
+	void tolerance(long value, const std::string& tolerance);
+
 };
 
 

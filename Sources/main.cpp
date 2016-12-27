@@ -50,7 +50,7 @@ int main(int argc, char const *argv[])
 				if (i+1 < argc)
 				{
 					cout << "Tolerance band = " << argv[i+1] << endl;
-	
+					toleranceBand = string(argv[i+1]);
 				}
 			}
 			if (t == false)
@@ -84,7 +84,7 @@ int main(int argc, char const *argv[])
 				}
 			}
 			//cout << "b = " << b << '\t' << "k = " << k << endl; //Debug
-			if (k >= 1 && b < 3)
+			if (k >= 0 && b < 3)
 			{
 				cout << "-b, --bands <BAND COLOR> <BAND COLOR> <BAND COLOR> / <BAND COLOR>" << endl;
 				return 0;
@@ -107,8 +107,9 @@ int main(int argc, char const *argv[])
 	//Prints an error 
 	if (totalResistance != -1)
 	{
-		cout << totalResistance << " ohm"<< endl; // print the total calculated value
+		cout << "Total Resistance = " << totalResistance << " ohm"<< endl; // print the total calculated value
 	}
+	resistor.tolerance(totalResistance, toleranceBand);
 	return 0;
 }
 
