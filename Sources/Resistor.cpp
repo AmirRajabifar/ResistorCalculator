@@ -19,21 +19,21 @@ unsigned int multiplier[] = {1, 10, 100, 1000, 10000, 100000, 1000000,
 
 void Resistor::setBands (const std::string& band1, const std::string& band2, const std::string& band3, const std::string& band4)
 {
-		this->__band_string[0] = band1;
-		this->__band_string[1] = band2;
-		this->__band_string[2] = band3;
-		this->__band_string[3] = band4;
-		this->__bands[0] = srchItems(band1);
-		this->__bands[1] = srchItems(band2);
-		this->__bands[2] = srchItems(band3);		
-		this->__bands[3] = srchItems(band4);
-		/*
-		for (int i = 0; i < MINC; ++i)
-		{
-			std::cout << __band_string[i] << '\t' << __bands[i] << std::endl;
-		}
-		std::cout << std::endl;
-		*/
+	this->__band_string[0] = band1;
+	this->__band_string[1] = band2;
+	this->__band_string[2] = band3;
+	this->__band_string[3] = band4;
+	this->__bands[0] = srchItems(band1);
+	this->__bands[1] = srchItems(band2);
+	this->__bands[2] = srchItems(band3);		
+	this->__bands[3] = srchItems(band4);
+	/*
+	for (int i = 0; i < MINC; ++i)
+	{
+		std::cout << __band_string[i] << '\t' << __bands[i] << std::endl;
+	}
+	std::cout << std::endl;
+	*/	
 }
 
 
@@ -85,7 +85,7 @@ long Resistor::calculateValue ()
 				//first band , second band values
 				total = (total * 10) + this->__bands[i]; 
 			}
-			//third band is the multiplier
+			//3rd band is the multiplier
 			this->__multi = this->__bands[2]; 
 		}
 		else
@@ -95,7 +95,7 @@ long Resistor::calculateValue ()
 				//first band , second band values
 				total = (total * 10) + this->__bands[i]; 
 			}
-			//third band is the multiplier
+			//4th band is the multiplier
 			this->__multi = this->__bands[3]; 			
 		}
 		total *= multiplier[this->__multi]; // *
@@ -111,9 +111,9 @@ long Resistor::calculateValue ()
 bool Resistor::validate()
 {
 	int j = 0;
-	if (__bands[MINC - 1] == -1)
+	if (__band_string[MINC - 1] == "-2")
 	{
-		for (int i = 0; i < MINC - 2; ++i)
+		for (int i = 0; i < MINC - 1; ++i)
 		{
 			if (this->__bands[i] == -1)
 			{
